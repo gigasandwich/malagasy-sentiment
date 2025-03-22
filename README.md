@@ -47,3 +47,6 @@ Very good product: 1
 Do not buy this product: -1
 Why do people sell this, it s the worse product here: -1
 ```
+
+# Comparison
+![Comparison](assets/comparison.png)
