@@ -24,7 +24,7 @@ def main():
     X_train_vectorized = vectorizer.vectorize(X_train, fit=True)
     
     # 3
-    model = get_classification_method('LogisticRegressionModel')
+    model = get_classification_method('NaiveBayesModel')
     model.fit(X_train_vectorized, y_train)
     
     # When using the model for predictions, we must not learn a new vocabulary
@@ -71,7 +71,7 @@ def get_vectorizer(string: Literal['BOW', 'TFIDF', 'WORD_EMBEDDINGS']) -> Vector
 
 def get_splitted_train_test():
     df = load_data(f'{data_folder}/english.csv')
-    df = df.head(100) # Uncomment to use all data
+    # df = df.head(100) # Comment to use all data
 
     X = df['comment'].values
     y = df['sentiment'].values
