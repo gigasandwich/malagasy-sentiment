@@ -20,23 +20,23 @@ class Vectorizer(ABC):
 class BOW(Vectorizer):
     def __init__(self):
         from sklearn.feature_extraction.text import CountVectorizer
-        self.count_vec = CountVectorizer()
+        self.vect = CountVectorizer()
 
     def vectorize(self, X_train, fit=True):
         if fit:
-            return self.count_vec.fit_transform(X_train)
-        return self.count_vec.transform(X_train)
+            return self.vect.fit_transform(X_train)
+        return self.vect.transform(X_train)
 
 class TFIDF(Vectorizer):
     def __init__(self):
         from sklearn.feature_extraction.text import TfidfVectorizer
-        self.tfidf = TfidfVectorizer()
+        self.vect = TfidfVectorizer()
 
     def vectorize(self, X_train, fit=True):
         if fit:
-            return self.tfidf.fit_transform(X_train)
+            return self.vect.fit_transform(X_train)
         else:
-            return self.tfidf.transform(X_train)
+            return self.vect.transform(X_train)
 
 class WORD_EMBEDDINGS(Vectorizer):
     # TODO: Add fit argument here too 

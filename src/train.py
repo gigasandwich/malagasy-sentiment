@@ -35,7 +35,7 @@ def main():
     print(f'Accuracy: {accuracy_score(y_true=y_test, y_pred=y_pred)}')
     print(f'Classification report:  {classification_report(y_true=y_test, y_pred=y_pred, zero_division=1)}')
 
-    # save_model(model, vectorizer)
+    save_model(model, vectorizer)
 
 def save_model(model, vectorizer):
     import datetime
@@ -43,11 +43,11 @@ def save_model(model, vectorizer):
     model_name: str = model.__class__.__name__.lower()
     vectorizer_name: str = vectorizer.__class__.__name__.lower()
 
-    timestamp = datetime.datetime.now().strftime(r'%Y%m%d_%H%M%S')
-    model_filename = f'{model_name}-{vectorizer_name}-{timestamp}.pkl'
+    model_filename = f'{model_name}-{vectorizer_name}.pkl'
     model_path = f'{trained_models_folder}/{model_filename}'
+    
     try:
-        joblib.dump({'model': model, 'vectorizer': vectorizer}, {model_path})
+        joblib.dump({'model': model.clf, 'vectorizer': vectorizer.vect}, model_path)
         print(f'Model saved at: {model_path}')
     except Exception as e:
         print(f"Error saving model: {e}")
