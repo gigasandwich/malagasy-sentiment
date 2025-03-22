@@ -9,8 +9,9 @@ def main():
 
 def list_to_dataframe(list):
     df = pd.DataFrame(list, columns=['sentiment', 'comment'])
+    df = df[['comment', 'sentiment']]
     return df
-
+    
 def format_to_list(filepath):
 
     def split_sentiment_review(string: str):
