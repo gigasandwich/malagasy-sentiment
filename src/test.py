@@ -2,8 +2,8 @@ from src.variables import *
 import joblib
 
 def main():
-    model_path = f'{trained_models_folder}/naivebayesmodel-tfidf.pkl'
-    model, vectorizer = load_model(model_path)
+    model_name = f'logisticregressionmodel-tfidf.pkl'
+    model, vectorizer = load_model(f'{trained_models_folder}/{model_name}')
 
     X_new = [
         'This is the best product I bought',
@@ -14,7 +14,9 @@ def main():
         'I rate it 10/10, very good',
         'Not good',
         'good',
-        'Very good product'
+        'Very good product',
+        'Do not buy this product',
+        'Why do people sell this, it s the worse product here'
     ]
     X_new_vectorized = vectorizer.transform(X_new)
     y_new_predicted = model.predict(X_new_vectorized)
