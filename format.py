@@ -1,7 +1,10 @@
 filepath = 'data/original.txt'
 
+def main():
+    corpus = format_to_list(filepath)
+    print(corpus)
 
-def format(filepath):
+def format_to_list(filepath):
     with open(filepath, 'r') as file:
         count = 0 # Added a limit because the file is too large
         corpus = []
@@ -23,7 +26,7 @@ def format(filepath):
             if count == 20:
                 break
         
-        print(corpus)
+        return corpus
 
 def split_sentiment_review(string: str):
     splitted = string.split(maxsplit=1)
@@ -36,4 +39,5 @@ def split_sentiment_review(string: str):
     
     return splitted
 
-format(filepath)
+if __name__ == '__main__':
+    main()
