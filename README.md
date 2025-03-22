@@ -8,3 +8,10 @@ Fetch reviews of products from random sources to do sentimental analysis so `we 
 - [] Traduct the language to Malagasy
 - [] Train and test another model
 - [] Do an e-commerce like website to add comments on a product
+
+# Modules
+To install non native modules of python-3:
+
+```bash
+pip install pandas, sklearn, gensim
+```
