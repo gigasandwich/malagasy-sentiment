@@ -5,6 +5,11 @@ from sklearn.model_selection import train_test_split
 from typing import Literal
 
 def main():
+    '''
+    Here, we: \n
+    - Choose a vectorizer with the get_vectorizer method \n
+    - Train the chosen model with the X_vectorized variable
+    '''
     X_train, X_test, y_train, y_test = get_splitted_train_test()
     
     vectorizer = get_vectorizer('BOW') # Just change the argument if you want to test another one

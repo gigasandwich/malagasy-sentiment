@@ -5,6 +5,9 @@ from abc import ABC, abstractmethod
 ##############################
 
 class Vectorizer(ABC):
+    '''
+    We will call these vectorizers to parse the string to numbers for the model
+    '''
     @abstractmethod
     def vectorize(self, X_train: str):
         pass
