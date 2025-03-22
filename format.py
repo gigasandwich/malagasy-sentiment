@@ -1,13 +1,20 @@
+from typing import List
 import pandas as pd
 
-filepath = 'data/original.txt'
+datafolder = 'data'
+filepath = f'{datafolder}/original.txt'
 
 def main():
-    corpus = format_to_list(filepath)
+    corpus = txt_to_list(filepath)
     df = list_to_dataframe(corpus)
     print(df)
 
-def list_to_dataframe(list):
+    df_to_csv(df)
+
+def df_to_csv(df: pd.DataFrame, datafolder: str = 'data'):
+    df.to_csv(f'{datafolder}/english.csv', index=False)
+
+def list_to_dataframe(list: List[str]):
     df = pd.DataFrame(list, columns=['sentiment', 'comment'])
 
     df = df[['comment', 'sentiment']] # Put the class/category (sentiment) last
@@ -17,7 +24,7 @@ def list_to_dataframe(list):
 
     return df
     
-def format_to_list(filepath):
+def txt_to_list(filepath: str = 'data/original.txt'):
 
     def split_sentiment_review(string: str):
         splitted = string.split(maxsplit=1)
