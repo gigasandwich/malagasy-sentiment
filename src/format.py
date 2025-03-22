@@ -3,16 +3,22 @@ from typing import List
 import pandas as pd
 
 def main():
+    '''
+    This module formats and exports the original file 'data/original.txt' to match the common csv standarts (comment: str, sentiment: int)
+    '''
     corpus = txt_to_list(filepath)
     df = list_to_dataframe(corpus)
     print(df)
-
     df_to_csv(df)
 
-def df_to_csv(df: pd.DataFrame, datafolder: str = 'data'):
-    df.to_csv(f'{datafolder}/english.csv', index=False)
+def df_to_csv(df: pd.DataFrame, datafolder: str = 'data') -> bool:
+    try:
+        df.to_csv(f'{datafolder}/english.csv', index=False)
+        return True
+    except:
+        return False
 
-def list_to_dataframe(list: List[str]):
+def list_to_dataframe(list: List[str]) -> pd.DataFrame:
     df = pd.DataFrame(list, columns=['sentiment', 'comment'])
 
     df = df[['comment', 'sentiment']] # Put the class/category (sentiment) last
@@ -22,7 +28,7 @@ def list_to_dataframe(list: List[str]):
 
     return df
     
-def txt_to_list(filepath: str = 'data/original.txt'):
+def txt_to_list(filepath: str = 'data/original.txt')-> List[List[str]]:
 
     def split_sentiment_review(string: str):
         splitted = string.split(maxsplit=1)

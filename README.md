@@ -9,6 +9,11 @@ Fetch reviews of products from random sources to do sentimental analysis so `we 
 - [] Train and test another model
 - [] Do an e-commerce like website to add comments on a product
 
+# How to run
+```bash
+py run.py
+```
+
 # Modules
 To install non native modules of python-3:
 
