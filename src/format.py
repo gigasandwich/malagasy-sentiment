@@ -1,8 +1,6 @@
+from src.variables import *
 from typing import List
 import pandas as pd
-
-datafolder = 'data'
-filepath = f'{datafolder}/original.txt'
 
 def main():
     corpus = txt_to_list(filepath)
