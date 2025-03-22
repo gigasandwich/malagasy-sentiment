@@ -6,39 +6,43 @@ from typing import List
 
 class Model(ABC):
     @abstractmethod
-    def fit(X_train: List[str], y_train: List[str]):
+    def fit(self, X_train: List[str], y_train: List[str]):
         pass
+
+    def predict(self, X_test):
+        return self.clf.predict(X_test)
 
 ##############################
 # Extended classes
 ##############################
 
-class Naive_Bayes(Model):
+class NaiveBayesModel(Model):
     '''
     For simple text data
     '''
-    def fit(X_train, y_train):
+
+    def fit(self, X_train, y_train):
         from sklearn.naive_bayes import MultinomialNB
 
-        clf = MultinomialNB()
-        clf.fit(X_train, y_train)
+        self.clf = MultinomialNB()
+        self.clf.fit(X_train, y_train)
 
-class LogisticRegression(Model):
+class LogisticRegressionModel(Model):
     '''
     For small datasets
     '''
-    def fit(X_train, y_train):
+    def fit(self, X_train, y_train):
         from sklearn.linear_model import LogisticRegression
 
-        clf = LogisticRegression()
-        clf.fit(X_train, y_train)
+        self.clf = LogisticRegression()
+        self.clf.fit(X_train, y_train)
 
-class LogisticRegression(Model):
+class RandomForestModel(Model):
     '''
     Handles non-linearity
     '''
-    def fit(X_train, y_train):
+    def fit(self, X_train, y_train):
         from sklearn.ensemble import RandomForestClassifier
 
-        clf = RandomForestClassifier()
-        clf.fit(X_train, y_train)
+        self.clf = RandomForestClassifier()
+        self.clf.fit(X_train, y_train)
