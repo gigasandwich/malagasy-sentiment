@@ -16,10 +16,6 @@ def main():
     3) Choose a model with the get_classification_model method
     '''
     X_train, X_test, y_train, y_test = get_splitted_train_test()
-
-    print(len(X_train))
-    print()
-    print(len(X_test))
     
     # 1 Possible choices: ['BOW', 'TFIDF', 'WORD_EMBEDDINGS']
     vectorizer = get_vectorizer('TFIDF') # Just change the argument if you want to test another one
