@@ -20,24 +20,26 @@ def main():
     vectorizer = get_vectorizer('BOW') # Just change the argument if you want to test another one
     
     # 2
-    X_train_vectorized = vectorizer.vectorize(X_train)
+    X_train_vectorized = vectorizer.vectorize(X_train, fit=True)
     
     # 3
     model = get_classification_method('LogisticRegressionModel')
     model.fit(X_train_vectorized, y_train)
     
-    # Evaluate the model
-    X_test_vectorized = vectorizer.vectorize(X_test)
+    # When using the model for predictions, we must not learn a new vocabulary
+    # Instead, we apply the same transformation learned from X_train, so fit=False
+    X_test_vectorized = vectorizer.vectorize(X_test, fit=False)
+    
     y_pred = model.predict(X_test_vectorized)
     # print(f'Accuracy: {accuracy_score(y_true=y_test, y_pred=y_pred)}')
 
 def get_classification_method(string: Literal['NaiveBayesModel', 'LogisticRegressionModel', 'RandomForestModel']) -> Model:
     models = {
-        'NaiveBayesModel': NaiveBayesModel,
-        'LogisticRegressionModel': LogisticRegressionModel,
-        'RandomForestModel': RandomForestModel
+        'NaiveBayesModel': NaiveBayesModel(),
+        'LogisticRegressionModel': LogisticRegressionModel(),
+        'RandomForestModel': RandomForestModel()
     }
-    return models.get(string, LogisticRegressionModel)()
+    return models.get(string, NaiveBayesModel())
 
 def get_vectorizer(string: Literal['BOW', 'TFIDF', 'WORD_EMBEDDINGS']) -> Vectorizer:
     vectorizers = {
