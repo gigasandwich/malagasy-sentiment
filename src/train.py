@@ -6,6 +6,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report
 from typing import Literal
+import joblib
 
 def main():
     '''
@@ -17,7 +18,7 @@ def main():
     X_train, X_test, y_train, y_test = get_splitted_train_test()
     
     # 1
-    vectorizer = get_vectorizer('BOW') # Just change the argument if you want to test another one
+    vectorizer = get_vectorizer('TFIDF') # Just change the argument if you want to test another one
     
     # 2
     X_train_vectorized = vectorizer.vectorize(X_train, fit=True)
@@ -33,6 +34,13 @@ def main():
     y_pred = model.predict(X_test_vectorized)
     print(f'Accuracy: {accuracy_score(y_true=y_test, y_pred=y_pred)}')
     print(f'Classification report:  {classification_report(y_true=y_test, y_pred=y_pred)}')
+
+    save_model(model, vectorizer)
+
+def save_model(model, vectorizer):
+    model_name: str = model.__class__.__name__.lower()
+    vectorizer_name: str = vectorizer.__class__.__name__.lower()
+    joblib.dump(model, f'{trained_models_folder}/{model_name}-{vectorizer_name}.pkl')
 
 def get_classification_method(string: Literal['NaiveBayesModel', 'LogisticRegressionModel', 'RandomForestModel']) -> Model:
     models = {
@@ -51,7 +59,7 @@ def get_vectorizer(string: Literal['BOW', 'TFIDF', 'WORD_EMBEDDINGS']) -> Vector
     return vectorizers.get(string, BOW())
 
 def get_splitted_train_test():
-    df = load_data(f'{datafolder}/english.csv')
+    df = load_data(f'{data_folder}/english.csv')
     df = df.head(100) # Uncomment to use all data
 
     X = df['comment'].values

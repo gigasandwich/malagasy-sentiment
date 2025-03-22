@@ -6,14 +6,14 @@ def main():
     '''
     This module formats and exports the original file 'data/original.txt' to match the common csv standarts (comment: str, sentiment: int)
     '''
-    corpus = txt_to_list(filepath)
+    corpus = txt_to_list(f'{data_folder}/original.txt')
     df = list_to_dataframe(corpus)
     print(df)
     df_to_csv(df)
 
-def df_to_csv(df: pd.DataFrame, datafolder: str = 'data') -> bool:
+def df_to_csv(df: pd.DataFrame, data_folder: str = 'data') -> bool:
     try:
-        df.to_csv(f'{datafolder}/english.csv', index=False)
+        df.to_csv(f'{data_folder}/english.csv', index=False)
         return True
     except:
         return False
