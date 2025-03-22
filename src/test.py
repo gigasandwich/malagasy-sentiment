@@ -6,11 +6,15 @@ def main():
     model, vectorizer = load_model(model_path)
 
     X_new = [
-        'This is the finest product I bought',
+        'This is the best product I bought',
         'I really hate the experience, very bad service!',
         'It s okay',
         'Absolutely amazing! I will buy again',
-        'Worst product I bought ever'
+        'Worst product I bought ever',
+        'I rate it 10/10, very good',
+        'Not good',
+        'good',
+        'Very good product'
     ]
     X_new_vectorized = vectorizer.transform(X_new)
     y_new_predicted = model.predict(X_new_vectorized)

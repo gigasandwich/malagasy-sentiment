@@ -26,6 +26,9 @@ def list_to_dataframe(list: List[str]) -> pd.DataFrame:
     df.loc[df['sentiment'] == 'neg', 'sentiment'] = -1
     df.loc[df['sentiment'] == 'pos', 'sentiment'] = 1
 
+    # df = df.sort_values(by='sentiment', ascending=False, ignore_index=True) # Comment to make it unordered
+    df = df.sample(frac=1) # Comment if you want the original values from the txt file
+    
     return df
     
 def txt_to_list(filepath: str = 'data/original.txt')-> List[List[str]]:
