@@ -38,8 +38,6 @@ def main():
     save_model(model, vectorizer)
 
 def save_model(model, vectorizer):
-    import datetime
-
     model_name: str = model.__class__.__name__.lower()
     vectorizer_name: str = vectorizer.__class__.__name__.lower()
 
