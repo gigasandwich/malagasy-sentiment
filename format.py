@@ -1,10 +1,29 @@
+import pandas as pd
+
 filepath = 'data/original.txt'
 
 def main():
     corpus = format_to_list(filepath)
-    print(corpus)
+    df = list_to_dataframe(corpus)
+    print(df)
+
+def list_to_dataframe(list):
+    df = pd.DataFrame(list, columns=['sentiment', 'comment'])
+    return df
 
 def format_to_list(filepath):
+
+    def split_sentiment_review(string: str):
+        splitted = string.split(maxsplit=1)
+
+        if splitted is None or len(splitted) == 0:
+            return None
+        
+        if splitted[0] != 'pos' and splitted[0] != 'neg':
+            return None
+        
+        return splitted
+
     with open(filepath, 'r') as file:
         count = 0 # Added a limit because the file is too large
         corpus = []
@@ -12,7 +31,7 @@ def format_to_list(filepath):
         for document in file:
             document = document.strip()
             
-            # Check before split operation 
+            # Check before split operation
             if document == '':
                 continue
 
@@ -27,17 +46,6 @@ def format_to_list(filepath):
                 break
         
         return corpus
-
-def split_sentiment_review(string: str):
-    splitted = string.split(maxsplit=1)
-
-    if splitted is None or len(splitted) == 0:
-        return None
-    
-    if splitted[0] != 'pos' and splitted[0] != 'neg':
-        return None
-    
-    return splitted
 
 if __name__ == '__main__':
     main()
