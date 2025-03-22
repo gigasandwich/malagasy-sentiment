@@ -7,7 +7,7 @@ from typing import Literal
 def main():
     X_train, X_test, y_train, y_test = get_splitted_train_test()
     
-    vectorizer = get_vectorizer('BOW')
+    vectorizer = get_vectorizer('BOW') # Just change the argument if you want to test another one
     X_vectorized = vectorizer.vectorize(X_train)
     print(X_vectorized)
 
