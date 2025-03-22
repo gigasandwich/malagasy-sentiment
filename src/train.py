@@ -29,9 +29,10 @@ def main():
     # When using the model for predictions, we must not learn a new vocabulary
     # Instead, we apply the same transformation learned from X_train, so fit=False
     X_test_vectorized = vectorizer.vectorize(X_test, fit=False)
-    
+
     y_pred = model.predict(X_test_vectorized)
-    # print(f'Accuracy: {accuracy_score(y_true=y_test, y_pred=y_pred)}')
+    print(f'Accuracy: {accuracy_score(y_true=y_test, y_pred=y_pred)}')
+    print(f'Classification report:  {classification_report(y_true=y_test, y_pred=y_pred)}')
 
 def get_classification_method(string: Literal['NaiveBayesModel', 'LogisticRegressionModel', 'RandomForestModel']) -> Model:
     models = {
