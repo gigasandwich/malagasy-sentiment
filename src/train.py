@@ -40,7 +40,7 @@ def main():
 def save_model(model, vectorizer):
     model_name: str = model.__class__.__name__.lower()
     vectorizer_name: str = vectorizer.__class__.__name__.lower()
-    joblib.dump(model, f'{trained_models_folder}/{model_name}-{vectorizer_name}.pkl')
+    joblib.dump(model.clf, f'{trained_models_folder}/{model_name}-{vectorizer_name}.pkl')
 
 def get_classification_method(string: Literal['NaiveBayesModel', 'LogisticRegressionModel', 'RandomForestModel']) -> Model:
     models = {
