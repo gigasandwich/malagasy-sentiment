@@ -37,8 +37,7 @@ def txt_to_list(filepath: str = 'data/original.txt'):
         
         return splitted
 
-    with open(filepath, 'r') as file:
-        count = 0 # Added a limit because the file is too large
+    with open(filepath, 'r', encoding='utf-8') as file:
         corpus = []
 
         for document in file:
@@ -49,14 +48,11 @@ def txt_to_list(filepath: str = 'data/original.txt'):
                 continue
 
             splitted = split_sentiment_review(document)
+            
             if splitted is None:
                 continue
             
             corpus.append(splitted)
-
-            count += 1
-            if count == 20:
-                break
         
         return corpus
 
