@@ -9,7 +9,12 @@ def main():
 
 def list_to_dataframe(list):
     df = pd.DataFrame(list, columns=['sentiment', 'comment'])
-    df = df[['comment', 'sentiment']]
+
+    df = df[['comment', 'sentiment']] # Put the class/category (sentiment) last
+
+    df.loc[df['sentiment'] == 'neg', 'sentiment'] = -1
+    df.loc[df['sentiment'] == 'pos', 'sentiment'] = 1
+
     return df
     
 def format_to_list(filepath):
