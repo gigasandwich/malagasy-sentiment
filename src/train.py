@@ -68,10 +68,10 @@ def get_vectorizer(string: Literal['BOW', 'TFIDF', 'WORD_EMBEDDINGS']) -> Vector
     return vectorizers.get(string, BOW())
 
 def get_splitted_train_test():
-    df = load_data(f'{data_folder}/english.csv')
+    df = load_data(f'{data_folder}/e-commerce.csv')
     # df = df.head(30) # Comment to use all data
 
-    X = df['comment'].values
+    X = df['comment-mg'].values
     y = df['sentiment'].values
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)

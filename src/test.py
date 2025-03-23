@@ -6,17 +6,17 @@ def main():
     model, vectorizer = load_model(f'{trained_models_folder}/{model_name}')
 
     X_new = [
-        'This is the best product I bought',
-        'I really hate the experience, very bad service!',
-        'It s okay',
-        'Absolutely amazing! I will buy again',
-        'Worst product I bought ever',
-        'I rate it 10/10, very good',
-        'Not good',
-        'good',
-        'Very good product',
-        'Do not buy this product',
-        'Why do people sell this, it s the worse product here'
+        'Ity no vokatra tsara indrindra novidiko',
+        'Tena halako ilay izy, serivisy ratsy be!',
+        'Milay izy izany',
+        'Hividy hafa koa aho amin ny manaraka',
+        'Vokatra ratsy indrindra novidiko hatrizay',
+        'Omeko 10/10 izany, tena tsara',
+        'Tsy tsara',
+        'Tsara',
+        'Vokatra ara-barotra tena tsara',
+        'Aza mividy ity vokatra ity',
+        'Nahoana ny olona no mivarotra an ity, ity no vokatra ratsy indrindra eto'
     ]
     X_new_vectorized = vectorizer.transform(X_new)
     y_new_predicted = model.predict(X_new_vectorized)
