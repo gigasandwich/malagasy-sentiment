@@ -18,7 +18,7 @@ py run.py
 To install non native modules of python-3:
 
 ```bash
-pip install pandas, sklearn, gensim
+pip install pandas sklearn gensim openpyxl
 ```
 
 # Note

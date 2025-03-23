@@ -4,19 +4,39 @@ import pandas as pd
 
 def main():
     '''
-    This module formats and exports the original file 'data/original.txt' to match the common csv standarts (comment: str, sentiment: int)
+    Update: This module fetches the data from e-commerce.xlsx and outputs it to csv
     '''
-    corpus = txt_to_list(f'{data_folder}/original.txt')
-    df = list_to_dataframe(corpus)
+    df = excel_to_df(f'{data_folder}/e-commerce.xlsx')
     print(df)
-    df_to_csv(df)
+    df_to_csv(df, data_folder)
+
+def excel_to_df(file_path: str = 'data') -> bool:
+    try:
+        df = pd.read_excel(file_path)
+        return df
+    except Exception as e:
+        print(f'Error parsing excel to dataframe {e}')
+        return False
+
+def df_to_excel(df: pd.DataFrame, data_folder: str = 'data') -> bool:
+    try:
+        df.to_excel(f'{data_folder}/e-commerce.xlsx')
+        return True
+    except Exception as e:
+        print(f'Error parsing dataframe to excel {e}')
+        return False
 
 def df_to_csv(df: pd.DataFrame, data_folder: str = 'data') -> bool:
     try:
-        df.to_csv(f'{data_folder}/english.csv', index=False)
+        df.to_csv(f'{data_folder}/e-commerce.csv')
         return True
-    except:
+    except Exception as e:
+        print(f'Error parsing dataframe to csv {e}')
         return False
+
+##############################
+# Deprecated methods
+##############################
 
 def list_to_dataframe(list: List[str]) -> pd.DataFrame:
     df = pd.DataFrame(list, columns=['sentiment', 'comment'])
