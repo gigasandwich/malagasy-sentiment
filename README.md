@@ -23,30 +23,30 @@ pip install pandas sklearn gensim openpyxl
 
 # Note
 Best combo so far:
+Model saved at: trained_models/logisticregressionmodel-tfidf.pkl
 ```
-logisticregressionmodel-tfidf
-Accuracy: 0.7505567928730512
+Accuracy: 0.7616926503340757
 Classification report:                precision    recall  f1-score   support
 
-          -1       0.75      0.89      0.81       274
-           1       0.76      0.53      0.62       175
+          -1       0.73      0.91      0.81       250
+           1       0.84      0.57      0.68       199
 
-    accuracy                           0.75       449
-   macro avg       0.75      0.71      0.72       449
-weighted avg       0.75      0.75      0.74       449
+    accuracy                           0.76       449
+   macro avg       0.78      0.74      0.75       449
+weighted avg       0.78      0.76      0.75       449
 
-This is the best product I bought: 1
-I really hate the experience, very bad service!: -1
-It s okay: -1
-Absolutely amazing! I will buy again: -1
-Worst product I bought ever: -1
-I rate it 10/10, very good: 1
-Not good: -1
-good: 1
-Very good product: 1
-Do not buy this product: -1
-Why do people sell this, it s the worse product here: -1
+Ity no vokatra tsara indrindra novidiko: 1
+Tena halako ilay izy, serivisy ratsy be!: -1
+Milay izy izany: -1
+Hividy hafa koa aho amin ny manaraka: -1
+Vokatra ratsy indrindra novidiko hatrizay: -1
+Omeko 10/10 izany, tena tsara: 1
+Tsy tsara: 1
+Tsara: 1
+Vokatra ara-barotra tena tsara: 1
+Aza mividy ity vokatra ity: -1
+Nahoana ny olona no mivarotra an ity, ity no vokatra ratsy indrindra eto: -1
 ```
 
-# Comparison
+# Model size comparison
 ![Comparison](assets/comparison.png)
