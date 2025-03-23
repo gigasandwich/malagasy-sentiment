@@ -1,11 +1,10 @@
 from src.variables import *
-from src.vectorizer import Vectorizer, BOW, TFIDF, WORD_EMBEDDINGS
-from src.classification_model import Model, NaiveBayesModel, LogisticRegressionModel, RandomForestModel
+from sklearn.base import BaseEstimator, TransformerMixin
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report
-from typing import Literal
+from typing import Literal, Union
 import joblib
 
 def main():
@@ -51,21 +50,27 @@ def save_model(model, vectorizer):
         print(f"Error saving model: {e}")
 
 
-def get_classification_method(string: Literal['NaiveBayesModel', 'LogisticRegressionModel', 'RandomForestModel']) -> Model:
+def get_classification_method(string: Literal['NaiveBayes', 'LogisticRegression', 'RandomForest']) -> BaseEstimator:
+    from sklearn.naive_bayes import MultinomialNB
+    from sklearn.linear_model import LogisticRegression
+    from sklearn.ensemble import RandomForestClassifier
+    
     models = {
-        'NaiveBayesModel': NaiveBayesModel(),
-        'LogisticRegressionModel': LogisticRegressionModel(),
-        'RandomForestModel': RandomForestModel()
+        'NaiveBayes': MultinomialNB(),
+        'LogisticRegression': LogisticRegression(),
+        'RandomForest': RandomForestClassifier()
     }
-    return models.get(string, NaiveBayesModel())
+    return models.get(string, MultinomialNB())
 
-def get_vectorizer(string: Literal['BOW', 'TFIDF', 'WORD_EMBEDDINGS']) -> Vectorizer:
+def get_vectorizer(string: Literal['BOW', 'TFIDF', 'WORD_EMBEDDINGS']) -> Union[BaseEstimator, TransformerMixin]:
+    from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+
     vectorizers = {
-        'BOW': BOW(),
-        'TFIDF': TFIDF(),
-        'WORD_EMBEDDINGS': WORD_EMBEDDINGS()
+        'BOW': CountVectorizer(),
+        'TFIDF': TfidfVectorizer(),
+        # 'WORD_EMBEDDINGS': WORD_EMBEDDINGS()
     }
-    return vectorizers.get(string, BOW())
+    return vectorizers.get(string, CountVectorizer())
 
 def get_splitted_train_test():
     df = load_data(f'{data_folder}/e-commerce.csv')
