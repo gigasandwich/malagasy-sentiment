@@ -17,13 +17,13 @@ def main():
     X_train, X_test, y_train, y_test = get_splitted_train_test()
     
     # 1 Possible choices: ['BOW', 'TFIDF', 'WORD_EMBEDDINGS'] # TODO: Add WORD_EMBEDDINGS
-    vectorizer = get_vectorizer('BOW') # Just change the argument if you want to test another one
+    vectorizer = get_vectorizer('TFIDF') # Just change the argument if you want to test another one
     
     # 2
     X_train_vectorized = vectorizer.fit_transform(X_train) # We fit
     
     # 3 Possible choices: ['NaiveBayes', 'LogisticRegression', 'RandomForest]
-    model = get_classification_method('NaiveBayes')
+    model = get_classification_method('RandomForest')
     model.fit(X_train_vectorized, y_train)
     
     # When using the model for predictions, we must not learn a new vocabulary

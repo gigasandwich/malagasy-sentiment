@@ -2,7 +2,7 @@ from src.variables import *
 import joblib
 
 def main():
-    model_name = f'logisticregression-tfidf.pkl'
+    model_name = f'randomforest-tfidf.pkl'
     model, vectorizer = load_model(f'{trained_models_folder}/{model_name}')
 
     X_new = [
