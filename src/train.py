@@ -22,8 +22,8 @@ def main():
     # 2
     X_train_vectorized = vectorizer.fit_transform(X_train) # We fit
     
-    # 3 Possible choices: ['NaiveBayes', 'LogisticRegression', 'RandomForest]
-    model = get_classification_method('RandomForest')
+    # 3 Possible choices: ['NaiveBayes', 'LogisticRegression', 'RandomForest', 'DecisionTree']
+    model = get_classification_method('DecisionTree')
     model.fit(X_train_vectorized, y_train)
     
     # When using the model for predictions, we must not learn a new vocabulary
@@ -41,6 +41,7 @@ def save_model(model, vectorizer):
         'MultinomialNB': 'NaiveBayes',
         'LogisticRegression': 'LogisticRegression',
         'RandomForestClassifier': 'RandomForest',
+        'DecisionTreeClassifier': 'DecisionTree'
     }
     vectorizer_names = {
         'CountVectorizer': 'BOW',
@@ -64,11 +65,13 @@ def get_classification_method(string: Literal['NaiveBayes', 'LogisticRegression'
     from sklearn.naive_bayes import MultinomialNB
     from sklearn.linear_model import LogisticRegression
     from sklearn.ensemble import RandomForestClassifier
+    from sklearn.tree import DecisionTreeClassifier
     
     models = {
         'NaiveBayes': MultinomialNB(),
         'LogisticRegression': LogisticRegression(),
-        'RandomForest': RandomForestClassifier()
+        'RandomForest': RandomForestClassifier(),
+        'DecisionTree': DecisionTreeClassifier()
     }
     return models.get(string, MultinomialNB())
 
